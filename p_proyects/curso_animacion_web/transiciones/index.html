@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>clase 1-transiciones</title>
+    <style>
+
+    [class^="pelota-"]{
+        margin: 10px auto;
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        background-color: red;
+        /*Las propiedades que van a cambiar en la transición*/
+        /*transition-property: width , height;*/
+
+        /*Cuánto tiempo va a durar la transición*/
+        /*transition-duration: 1s;*/
+
+        /*Cuánto tiempo va a tardar la transición en ocurrir*/
+        /*transition-delay: 200ms;*/
+
+        /*Función que determina de qué forma se calculan los valores intermedios de la transición*/
+        /*ease: Específica un efecto de transicón con un arranque lento, luego rápido, luego finaliza lentamente*/
+        /*linear: Específica un efecto de transición con la misma velocidad de principio a fin.*/
+        /*ease-in: especifica un efecto de transición con un inicio lento*/
+        /*ease-out: Específica un efectod e transición con un inico y fin lentos*/
+        /*cubic-bezier(n,n,n,n): Te permite definir tus propios valores en una función*/
+        /*transition-timing-function: ease;*/
+    }
+
+    .pelota-a{
+        transition-property: width , height;
+        transition-duration: 1s;
+        transition-delay: 200ms;
+        transition-timing-function: ease;
+    }
+
+    .pelota-b{
+        transition-property: width , height;
+        transition-duration: 1s;
+        transition-delay: 1000ms;
+        transition-timing-function:linear;
+    }
+
+    .pelota-c{
+        transition-property: width , height;
+        transition-duration: 1s;
+        transition-delay: 200ms;
+        transition-timing-function:ease-in;
+    }
+
+    .pelota-d{
+        transition-property: width , height;
+        transition-duration: 1s;
+        transition-delay: 200ms;
+        transition-timing-function:ease-out;
+    }
+
+    .pelota-e{
+        transition-property: width , height;
+        transition-duration: 1s;
+        transition-delay: 200ms;
+        transition-timing-function:cubic-bezier(1,0,0,1);
+    }
+
+    [class^="pelota-"]:hover{
+        height: 200px;
+        width: 200px;
+    }
+    </style>
+</head>
+<body>
+    <div class="pelota-a"></div>
+</body>
+<body>
+    <div class="pelota-b"></div>
+</body>
+<body>
+    <div class="pelota-c"></div>
+</body>
+<body>
+    <div class="pelota-d"></div>
+</body>
+<body>
+    <div class="pelota-e"></div>
+</body>
+<body>
+    <div class="pelota-e"></div>
+</body>
+</html>

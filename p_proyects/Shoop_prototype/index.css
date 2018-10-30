@@ -1,0 +1,119 @@
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: rgb(223, 223, 223)
+  }
+
+  section{
+    background-color: white;
+    height: 600px;
+    width: 600px;
+    box-shadow: 10px 10px 50px rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+  }
+  .inicio_titulo{
+    margin: 20px 25px;
+  }
+
+  form{
+    margin: 60px 25px 0;
+  }
+
+  .email-line{
+    font-size: 18px;
+    color: rgb(120, 14, 14);
+  }
+  .email-line-input{
+    width: 100%;
+    height: 25px;
+    border-radius: 5px;
+  }
+
+  .password-line{
+    font-size: 18px;
+    color: rgb(120, 14, 14);
+  }
+  .password-line-input{
+    width: 100%;
+    height: 25px;
+    border-radius: 5px;
+  }
+  .password-confirm-line{
+    font-size: 18px;
+    color: rgb(120, 14, 14);
+  }
+  .password-confirm-line-input{
+    width: 100%;
+    height: 25px;
+    border-radius: 5px;
+  }
+  .password-olvido{
+    font-size: 13px;
+    color: rgb(175, 175, 175);
+  }
+  .text_registro{
+    text-align: center;
+    font-size: 18px;
+    margin: 70px 0 0px ;
+    bottom: 0;
+  }
+  .button-iniciar{
+    margin: 30px 0 0;
+    border: none;
+    height: 35px;
+    width: 150px;
+    color: white;
+    background-color: rgb(120, 14, 14);
+  }
+
+  .button-iniciar:hover{
+    height: 40px;
+    width: 155px;
+    box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.80);
+  }
+
+  .button-iniciar-line{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  a{
+    margin: 0 5px;
+    color: black
+  }
+  a:hover{
+    margin: 0 5px;
+    text-decoration: none;
+    color: rgb(120, 14, 14);
+  }
+
+  footer{
+    position: absolute;
+    border: 1px solid red;
+    display: flex;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content:   center;
+    align-items: center;
+  }
+
+  footer ol{
+    display: flex;
+    text-decoration: none;
+    margin: 0 5px;
+  }
+
+  footer li{
+    margin: 0 30px;
+    display:flex;
+    font-weight: bold;
+  }
+
+  footer li:hover{
+    font-size: 20px;
+    color: red;
+  }

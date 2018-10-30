@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Prototype</title>
+  <style media="screen">
+
+    body{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      height: 100vh;
+      background-color: rgb(223, 223, 223);
+      }
+
+      section.products-section{
+        background-color: white;
+        width: 1600px;
+        box-shadow: 10px 10px 50px rgba(0, 0, 0, 0.7);
+        border-radius: 5px;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+        .product{
+          border: 1px solid rgb(226, 226, 226);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        background-color: white;
+        border-radius: 5px;
+        width: 300px;
+        height: 400px;
+        margin: 15px 30px;
+        transition-duration: 1s;
+        transition-timing-function: ease;
+      }
+
+      .product:hover{
+        border: 1px solid rgba(120, 14, 14, 0.6   );
+        background-color: white;
+        box-shadow: 0px 1px 40px rgba(0, 0, 0, 1);
+      }
+      .product figure{
+        margin: 20px 10px 0;
+
+      }
+
+      .product img{
+        width: 280px;
+        height: 200px;
+      }
+
+      .product-detail{
+        border-radius: 10px 10px 0px 0px;
+        height: 160px;
+        width: 100%;
+        text-align: center;
+        margin: 15px 0 0;
+        background-color: rgba(120, 14, 14, 0.85);
+        box-shadow: 0px -5px 10px -5px rgba(0,0,0,1);
+        transition-duration: 1s;
+        transition-timing-function: ease;
+      }
+
+      .product-title{
+        color: white;
+      }
+      .product-info{
+        margin: 15px 0 5px;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+      }
+
+      .button-producto{
+        border-radius: 5px;
+        margin: 20px 0 0;
+        border: none;
+        height: 35px;
+        width: 150px;
+        color: rgba(120, 14, 14, 1);
+        background-color: white;
+      }
+
+      .button-producto:active{
+        margin: 22px 0 0;
+        height: 30px;
+        width: 145px;
+      }
+
+      footer{
+        border: 1px solid red;
+        display: flex;
+        bottom: -100px;
+        height: 100px;
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content:   center;
+        align-items: center;
+      }
+
+      footer ol{
+        display: flex;
+        text-decoration: none;
+        margin: 0 5px;
+      }
+
+      footer li{
+        margin: 0 30px;
+        display:flex;
+        font-weight: bold;
+      }
+
+      footer li:hover{
+        font-size: 20px;
+        color: red;
+      }
+
+    </style>
+</head>
+
+<body>
+  <section class="products-section">
+    <div class="product">
+      <div class="product-image">
+        <figure>
+          <img src="paquete500.png" alt="">
+        </figure>
+      </div>
+      <div class="product-detail">
+        <h1 class="product-title">Producto</h1>
+        <p class="product-info">Infromacion del producto</p>
+        <form class="" action="index.html" method="post">
+          <input type="button" name="" value="VER" class="button-producto">
+        </form>
+      </div>
+    </div>
+
+  </section>
+  <footer>
+    <nav>
+      <ol>
+        <li>Inicio</li>
+        <li>Productos</li>
+        <li>Pago</li>
+        <li>Final</li>
+      </ol>
+    </nav>
+  </footer>
+</body>
+</html>
+<!-- h -->

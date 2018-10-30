@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>transformacion rotate</title>
+    <style>
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: whitesmoke;
+            font-family: Arial;
+        }
+        .container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        [class*="cuadradito-"]{
+            display: flex;
+            align-content: center;
+            align-items: center;
+            justify-content: center;
+            width: 200px;
+            height: 200px;
+            background-color: #7dc900;
+            margin: 20px;
+            
+        }
+
+        .cuadradito-1{
+            transition-duration: 2s;
+            transition-delay: 1s;
+            transform: translate(-50vw)
+        }
+        .cuadradito-2{
+            transition-duration: 3s;
+            transition-delay: 1.5s;
+            transform: translateY(-100vh)
+        }
+        .cuadradito-3{
+            transition-duration: 2.8s;
+            transition-delay: 1.5s;
+            transform: translateY(100vw)
+        }
+        .cuadradito-4{
+            transition-duration: 3s;
+            transition-delay: 1.5s;
+            transform: translateY(-100vh)
+        }
+
+        .cuadradito-5{
+            transition-duration: 2s;
+            transition-delay: 1s;
+            transform: translate(50vw)
+        }
+
+        span{
+            color: rgba(240, 248, 255, 0);
+        }
+
+        .letras-1{
+            color: rgba(240, 248, 255, 0);
+            transition-duration: 1s;
+            transition-delay: 4.5s;
+        }
+        
+        .letras-2{
+            color: rgba(240, 248, 255, 0);
+            transition-duration: 1s;
+            transition-delay: 5s;
+        }
+
+        .letras-3{
+            color: rgba(240, 248, 255, 0);
+            transition-duration: 1s;
+            transition-delay: 5.5s;
+        }
+
+        .letras-4{
+            color: rgba(240, 248, 255, 0);
+            transition-duration: 1s;
+            transition-delay: 6s;
+        }
+        .letras-5{
+            color: rgba(240, 248, 255, 0);
+            transition-duration: 1s;
+            transition-delay: 6.5s;
+        }
+
+        .letras-6{
+            color: rgba(240, 248, 255, 0);
+            transition-duration: 1s;
+            transition-delay: 7s;
+        }
+
+        .container:hover [class*="cuadradito-"]{
+            border-radius: 50%;
+            transform: rotate(360deg);
+            transform: translate(0)
+        }
+
+        .container:hover [class*="letras-"]{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cuadradito-1">
+            <span  class="letras-1">Roy</span>
+        </div>
+        <div class="cuadradito-2">
+                <span  class="letras-2">se</span>
+            </div>
+            <div class="cuadradito-3">
+                    <span  class="letras-3">la</span>
+                </div>
+                <div class="cuadradito-4">
+                        <span  class="letras-4">come</span>
+                    </div>
+                    <div class="cuadradito-5">
+                            <span  class="letras-5">;</span>
+                            <span  class="letras-6">)</span>
+                        </div>
+    </div>
+</body>
+</html>
