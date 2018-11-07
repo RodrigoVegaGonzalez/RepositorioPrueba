@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>transformacion will change</title>
+    <style>
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: whitesmoke;
+            font-family: Arial;
+            perspective: 200px;
+            perspective-origin: center; 
+        }
+        .container{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            border: 1px solid red;
+        }
+        .cuadradito{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+            background-color: #7dc900;
+            margin: 20px;
+            animation-name: square-animation;
+            animation-duration: 1.5s;
+            animation-delay: 1s;
+            animation-iteration-count: infinite;
+            animation-timing-function: cubic-bezier(.94,-0.25,.18,.9);
+            animation-direction: alternate;
+        }
+
+        @keyframes square-animation{
+           0%{
+            left: 0;
+           } 
+        50%{
+            background-color: blue;
+        }
+           100%{
+            left: calc(100% - 240px);
+           }
+        }
+        .container:hover .cuadradito{
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cuadradito">
+            Hola MUNDO
+        </div>
+    </div>
+</body>
+</html>

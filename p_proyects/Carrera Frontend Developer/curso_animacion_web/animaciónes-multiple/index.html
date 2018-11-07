@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>transformacion rotate</title>
+    <style>
+        body{
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            height: 100vh;
+            color: whitesmoke;
+            font-family: Arial;
+            perspective: 200px;
+            perspective-origin: center; 
+        }
+        .container{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            border: 1px solid red;
+        }
+        .cuadradito{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+            background-color: #7dc900;
+            margin: 20px;
+            animation-name: square-animation, rebote /*rebote*/;
+            animation-duration: 3s, 500ms;
+            animation-delay: 1s;
+            animation-iteration-count: infinite, 20;
+            animation-timing-function: linear, ease-in-out;
+            animation-direction: alternate;
+        }
+
+        @keyframes square-animation{
+           0%{
+            left: 0;
+           } 
+            50%{
+            background-color: blue;
+            color: transparent;
+            }
+           100%{
+            left: calc(100% - 240px);
+           }
+        }
+
+        @keyframes rebote{
+            from{
+                transform: translateY(0)
+            }
+
+            to{
+                transform: translateY(100px) scale(1,.8)
+            }
+        }
+
+        @keyframes escalera{
+            from{
+                transform: translateY(0);
+            }
+           to{
+               transform: translateY(500px);
+           }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cuadradito" id="cuadradito">
+            Hola MUNDO
+        </div>
+    </div>
+    <script>
+        const $cuadrado = document.getElementById("cuadradito");
+        $cuadrado.addEventListener("animationend",(event)=>{
+            console.log("hola");
+            if (event.animationName === "rebote"){
+                $cuadrado.style.animationName = 'square-animation escalera'
+                $cuadrado.style.animationDuration = '3s'
+
+            }
+        });
+    </script>
+</body>
+</html>
