@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Panaderia</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+              background-image: url('images/fondo.png');
+              object-fit: cover;
+              background-size: 100% 100%;
+                display: flex;
+                align-items:center;
+                justify-content:center;
+                height: 100vh;
+            }
+
+            .login-container{
+                height: 500px;
+                width: 100%;
+                display: flex;
+                align-items:center;
+                padding: 25px;
+            }
+
+            form{
+                display: box;
+                margin: 10px 0px;
+                width: 98%;
+            }
+            .area-texto{
+              height: 35px;
+              width: 100%;
+              font-size: 22px;
+              margin: 30px 0;
+              padding: 3px 5px;
+            }
+            .vendedor{
+
+                color: rgb(32, 115, 70);
+                border: 2px solid rgb(147, 28, 28);
+                transition: 1s;
+            }
+
+            .sucursal{
+                color: rgb(147, 28, 28);
+                border: 2px solid rgb(32, 115, 70);;
+                transition: 1s;
+            }
+
+            .vendedor:focus{
+
+                color: rgb(32, 115, 70);
+                border: 2px solid rgb(32, 115, 70);
+                color: rgb(147, 28, 28);
+                -webkit-box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.75);
+                -moz-box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.75);
+                box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.75);
+            }
+
+            .sucursal:focus{
+                color: rgb(147, 28, 28);
+                border: 2px solid rgb(147, 28, 28);
+                color: rgb(32, 115, 70);
+                -webkit-box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.75);
+                -moz-box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.75);
+                box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.75);
+            }
+
+
+
+            .boton-entrar{
+                margin: 45px auto;
+                display: block;
+                border: 0px;
+                background-color: rgb(43, 149, 92);
+                color: white;
+                width: 100px;
+                height: 40px;
+                border-radius: 5px 5px 10px 10px;
+                border-bottom: 3px solid rgb(32, 115, 70);
+                -webkit-box-shadow: 0px 3px 30px 0px rgba(0,0,0,0.75);
+                -moz-box-shadow: 0px 3px 30px 0px rgba(0,0,0,0.75);
+                box-shadow: 0px 3px 30px 0px rgba(0,0,0,0.75);
+                transition: 0.6s;
+            }
+
+            .boton-entrar:focus{
+                -webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+                -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+                box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="login-container">
+            <form>
+              <select class="area-texto sucursal">
+                <option value="volvo">Elige tu Sucursal</option>
+                <option value="volvo">Lindavista</option>
+                <option value="saab">Tepeyac</option>
+                <option value="opel">San Cayetano</option>
+                <option value="audi">Galerias</option>
+              </select>
+              <select class="area-texto vendedor">
+                <option value="volvo">Elige el Vendedor</option>
+                <option value="saab">Fernanda</option>
+                <option value="opel">Corina</option>
+                <option value="audi">Ana</option>
+                <option value="audi">Antonio</option>
+                <option value="audi">Jessica</option>
+                <option value="audi">Zarate</option>
+              </select>
+
+                <input type="button" name="" value="Entrar" class="boton-entrar">
+            </form>
+        </div>
+    </body>
+</html>
