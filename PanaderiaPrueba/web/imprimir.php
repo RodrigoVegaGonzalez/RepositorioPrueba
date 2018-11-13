@@ -92,9 +92,93 @@ try{
 	Ahora vamos a imprimir un encabezado
 */
 
+	$user = "root";
+$pass = "n0m3l0";  // en mi caso tengo contraseña pero en casa caso introducidla aquí.
+$servidor = "localhost";
+$basededatos = "tahona";
+
+
+$conexion = mysqli_connect( $servidor, $user, 
+	$pass);
+
+$db = mysqli_select_db( $conexion, $basededatos );
+
+
+$printer->setJustification(Printer::JUSTIFY_CENTER);	
+$printer->text("Usuarios" . "\n");
+
+
+
+$consulta_usuarios = "SELECT * FROM users";
+
+
+
+$resultado = mysqli_query( $conexion, $consulta_usuarios ) or die ( "Algo ha ido mal en la consulta a la base de datos"); 
+
+
+while ($nombre = mysqli_fetch_array( $resultado ))
+{
+
+$printer->setJustification(Printer::JUSTIFY_LEFT);	
+$printer->text($nombre['user_id']."  ".$nombre['name']. "\n"); 
+
+$printer->setJustification(Printer::JUSTIFY_RIGHT);
+$printer->text($nombre['phone']. "\n");
+
+}
+
+/*
+$printer->setJustification(Printer::JUSTIFY_CENTER);	
+$printer->text("Productos" . "\n");
+
+$consulta_productos = "SELECT * FROM producto";
+$resultado2 = mysqli_query( $conexion, $consulta_productos) or die ( "Algo ha ido mal en la consulta a la base de datos"); 
+
+while ($producto = mysqli_fetch_array( $resultado2 ))
+{
+
+$printer->setJustification(Printer::JUSTIFY_LEFT);	
+$printer->text($producto['id_producto']."  ".$producto['nombre_producto']. "\n"); 
+
+$printer->setJustification(Printer::JUSTIFY_RIGHT);
+$printer->text($producto['precio']. "\n");
+$printer->text($producto['tamaño']. "\n");
+$printer->text($producto['peso']. "\n");
+$printer->text($producto['tipo']. "\n");
+
+}
+
+$printer->setJustification(Printer::JUSTIFY_CENTER);	
+$printer->text("Compras Realizadas" . "\n");
+
+$consulta_compras =
+"SELECT c.id_compra, u.nombre_usuario, p.nombre_producto, p.precio
+FROM compra AS c
+JOIN usuario AS u
+ON u.id_usuario = c.id_usuario
+JOIN producto AS p
+ON p.id_producto = c.id_producto;";
+
+$resultado3 = mysqli_query( $conexion, $consulta_compras) or die ( "Algo ha ido mal en la consulta a la base de datos"); 
+
+while ($compra = mysqli_fetch_array( $resultado3 ))
+{
+
+$printer->setJustification(Printer::JUSTIFY_LEFT);	
+$printer->text($compra['id_compra']."  "
+	.$compra['nombre_usuario']. "\n"); 
+
+$printer->setJustification(Printer::JUSTIFY_RIGHT);
+$printer->text($compra['nombre_producto']. "\n");
+$printer->text("$".$compra['precio']. "\n");
+
+}*/
+
 $printer->text("Prueba Impresion" . "\n");
+
 #La fecha también
 $printer->text(date("Y-m-d H:i:s") . "\n");
+
 
 
 /*
@@ -114,6 +198,7 @@ foreach ($productos as $producto) {
     /*Y a la derecha para el importe*/
     $printer->setJustification(Printer::JUSTIFY_RIGHT);
     $printer->text(' $' . $producto->precio . "\n");
+
 }
 
 /*
