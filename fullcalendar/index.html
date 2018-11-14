@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/moment.min.js"></script>
+
+
+
+
+
+    <!--Full Calendar-->
+    <link rel="stylesheet" href="css/fullcalendar.min.css">
+    <script src="js/fullcalendar.min.js"></script>
+    <script src="js/es.js"></script>
+
+
+
+
+    <script>
+      $(document).ready(function(){
+        $('#CalendarioWeb').fullCalendar({
+          themeSystem: 'bootstrap4',
+          header:{
+            left:"today, prev, next,Miboton",
+            center:"title",
+            right:"month, basicWeek ,basicDay, agendaWeek, agendaDay"
+          },
+          customButtons:{
+            Miboton:{
+              text:"boton 1",
+              click: function(){
+                alert("Accion del Boton");
+              }
+            }
+          },
+          dayClick: function(date, jsEvent, view) {
+            $("#txtFecha").val(date.format());
+            $("#modal-event").modal();
+          },
+
+            events: 'http://localhost/fullcalendar/eventos.php'
+              ,
+          eventClick:function(calEvent,jsEvent,view){
+            //h2
+            $("#titulo-evento").html(calEvent.title);
+            //MOstrar la informacion del evento
+            $('#descripcionEvento').html(calEvent.descripcion);
+            $("#txtDescripcion").val(calEvent.descripcion);
+            $("#txtID").val(calEvent.id);
+            $("#txtTitulo").val(calEvent.title);
+            $("#txtColor").val(calEvent.color);
+            FECHAHORA = calEvent.start._i.split(" ");
+            $("#txtFecha").val(FECHAHORA[0]);
+            $("#txtHora").val(FECHAHORA[1]);
+
+            $("#modal-event").modal();
+          }
+        });
+      });
+    </script>
+    <title>Full calendar</title>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row mt-3">
+        <div class="col"></div>
+        <div class="col-7">
+          <div id="CalendarioWeb"></div>
+        </div>
+        <div class="col"></div>
+      </div>
+    </div>
+
+<!-- Modal (Agregar, Modificar, Eliminar) -->
+<div class="modal fade" id="modal-event" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="titulo-evento"></h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div id="descripcionEvento">
+        ID:<input type="text" id="txtID" name="txtID">
+        Fecha: <input type="text" name="txtFecha" value="" id="txtFecha">
+        Titulo: <input type="text" name="" value="" id="txtTitulo">
+        Hora: <input type="text" name="" value="10:30" id="txtHora">
+        Descripcion: <textarea value="" id="txtDescripcion" rows="3"></textarea>
+        Color: <input type="color" name="" value="#ff0000" id="txtColor">
+      </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" id="btnAgregar" class="btn btn-success">Agregar</button>
+      <button type="button" class="btn btn-success">Modificar</button>
+      <button type="button" class="btn btn-danger">Borrar</button>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+          <script>
+
+        var NuevoEvento;
+
+
+      $('#btnAgregar').click(function(){
+
+          RecolectarDatosGUI();
+
+          $('#CalendarioWeb').fullCalendar('renderEvent',NuevoEvento);
+            $("#modal-event").modal('toggle');
+      });
+
+
+      function RecolectarDatosGUI(){
+        NuevoEvento={
+        id:$('#txtID').val(),
+        title:$('#txtTitulo').val(),
+        start:$('#txtFecha').val()+" "+$('#txtHora').val(),
+        color:$('txtColor').val(),
+        descripcion:$('#txtDescripcion').val(),
+        textcolor:"#FFFFFF",
+        end:$('txtFecha').val()+" "+$('txtHora').val(),
+
+      };
+}
+        </script>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
