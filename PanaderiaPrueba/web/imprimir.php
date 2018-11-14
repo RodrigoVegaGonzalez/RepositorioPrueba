@@ -106,10 +106,11 @@ $db = mysqli_select_db( $conexion, $basededatos );
 
 $printer->setJustification(Printer::JUSTIFY_CENTER);	
 $printer->text("Usuarios" . "\n");
+$printer->text("\n");
 
 
 
-$consulta_usuarios = "SELECT * FROM users";
+$consulta_usuarios = "SELECT * FROM users WHERE name LIKE '%ictor%'";
 
 
 

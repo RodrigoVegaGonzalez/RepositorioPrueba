@@ -1,6 +1,5 @@
 create database pruebas;
 
-use pruebas;
 
 create table Usuario(
 	id_usuario integer Primary Key not null Auto_Increment,
