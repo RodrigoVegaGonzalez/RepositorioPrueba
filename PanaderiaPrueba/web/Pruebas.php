@@ -1,12 +1,8 @@
 <?php
 
-header('Content-Type: application/json');
-
-$user = "root";
-$
+//header('Content-Type: application/json');
 
 
-$_POST["nombre"];
-
+echo "Compraste " . $_POST['hdnId'];
 
 ?>

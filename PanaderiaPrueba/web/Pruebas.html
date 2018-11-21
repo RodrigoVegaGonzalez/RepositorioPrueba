@@ -2,6 +2,16 @@
 <html>
 <body>
 
+	<style type="text/css">
+		#btnInvisible{
+			visibility: hidden;
+		}
+		#btnVisible{
+			visibility: hidden;
+		}
+
+	</style>
+
 <p>Select a new car from the list.</p>
 
 <select id="mySelect" onchange="myFunction()">
@@ -30,6 +40,11 @@ function myFunction() {
 	</form>
 
 
+	<button id="btnMostar" onclick="Mostrar()">Mostrar botones</button>
+	<button id="btnInvisible" onclick="PavoGrande()">Pavo Grande</button>
+	<button id="btnVisible" onclick="PavoFamiliar()">Pavo Familiar</button>
+
+
 <script type="text/javascript">
 	function Total(){
 var Total = 0;		
@@ -41,7 +56,22 @@ var Total = 0;
 
 	}
 
+	function Mostrar(){
+		 document.getElementById("btnInvisible").style.visibility = "visible";
+		 document.getElementById("btnVisible").style.visibility = "visible";
+	}
+	function PavoGrande(){
+		document.getElementById("txtNombre").value = "200";
+	}
+	function PavoFamiliar(){
+		document.getElementById("txtNombre").value = "300";
+	}
+
 </script>
+
+
+
+
 
 </body>
 </html>

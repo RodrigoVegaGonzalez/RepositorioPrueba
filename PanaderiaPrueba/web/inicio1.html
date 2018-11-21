@@ -231,7 +231,10 @@ font-family: 'Cutive', serif;
                 
             </div>
             <div class="item_vacio">
-              <button type="button" class="boton-siguiente btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="Confirmar()">
+              <!--<button type="button" class="boton-siguiente btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="Confirmar()">
+                Continuar
+              </button>-->
+              <button type="button" id="Continuar" class="boton-siguiente btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                 Continuar
               </button>
 
@@ -246,18 +249,7 @@ font-family: 'Cutive', serif;
                       </button>
                     </div>
                     <div class="modal-body">
-                      <form action="imprimir.php" method="POST">
-                        <input type="hidden" name="hdnId" id="hdnId">
-                        <input type="hidden" name="hdnTamano" id="hdnTamano">
-                        <input type="hidden" id="hdnNombreProducto" name="hdnNombreProducto">
-                        <input type="hidden" id="hdnNombreCliente" name="hdnNombreCliente">
-                        <input type="hidden" name="hdnTel" id="hdnTel">
-                        <input type="hidden" name="hdnAcuenta" id="hdnAcuenta">
-                        <input type="hidden" name="hdnTotal" id="hdnTotal">
-                        <input type="hidden" name="hdnOrderTime" id="hdnOrderTime">
-                        <input type="hidden" name="hdnDeliverTime" id="hdnDeliverTime">
-
-
+                      <form>
                             <div class="contaniner-fluid">
                                 <div class="row">
                                     <div class="col-6 text-center">
@@ -332,19 +324,19 @@ font-family: 'Cutive', serif;
             <div class="item_vacio">
                 
             </div>
+
             <div class="item1 contenido">
                 <!--Aqui van los botones para el pedido-->
                 <h1 class="nombre" id="NombreProductoT">Nombre Producto</h1>
-
-                
 
                     <div class="container-fluid">
                         <div class="row mt-2 text-center">
                             <div class="col-6 text-center">
                                 <h3 class="tamaño">Tamaño</h3>
-                                <button id="btnMostrar" onclick="Mostrar()">Mostrar</button>
-                                <button id="Grande" onclick="T">Grande</button> 
-                                <button id="Familiar" onclick="">Familiar</button>
+                                <button id="Grande">Grande</button> 
+                                <button id="Familiar">Familiar</button>
+                                <button id="Kilochico">2-3</button> 
+                                <button id="kiloGrande">3-5</button>
                             
                             </div>
                             <div class="col-6 text-center mb-3">
@@ -372,19 +364,21 @@ font-family: 'Cutive', serif;
                             </div>
                              <div class="col-6 text-center">
                                 <h4 class="precio">Observaciones</h4>
-                            <input class="input-dato" type="text" id="txtOBS" value="Ninguna">
+                            <input class="input-dato" type="text" id="txtOBS">
                             </div>
                         </div>
                         <div class="row mt-4">
                             <div class="col-6 text-center">
                                 <h4 class="precio">A cuenta</h4>
-                            <input class="input-dato" type="number" id="txtCuenta" value="0" onchange="Total()">
+                            <input class="input-dato" type="number" id="txtCuenta" onchange="Total()">
                             </div>
                              <div class="col-6 text-center">
                                 <h4 class="precio">Total</h4>
                             <input class="input-dato" type="text" id="txtTotal" >
                              <input type="hidden" name="hdnTamano" id="hdnID" >
-                               <input type="hidden" name="hdnTamano" id="hdnNombre">
+
+                               <!--<input type="hidden" name="hdnTamano" id="hdnNombre">-->
+
                             </div>
                         </div>
                     </div>
@@ -412,182 +406,197 @@ font-family: 'Cutive', serif;
                     </div>-->
                
             </div>
-            <div class="item2">
-                <button id="btnPavo" class="btnSeleccion" onclick="pavo()">
-                <figure>
 
-                    <img src="images/pavo.jpg" alt="imagen del producto">
-                </figure>
+            <div class="item2">
+                <button id="btnPavo" class="btnSeleccion">
+                    <figure>
+                        <img src="images/pavo.jpg" alt="imagen del producto">
+                    </figure>
                 </button>
             </div>
+
             <div class="item3">
-              <button id="btnlomo" class="btnSeleccion" onclick="lomo()">
-                <figure>
-                    <img src="images/lomo.png" alt="imagen del producto">
-                </figure>
-              </button>
+                <button id="btnLomo" class="btnSeleccion">
+                    <figure>
+                        <img src="images/lomo.png" alt="imagen del producto">
+                    </figure>
+                </button>
             </div>
+
             <div class="item4">
-              <button id="btnPierna" class="btnSeleccion" onclick="pierna()">
-                <figure>
-                    <img src="images/pierna.jpg" alt="imagen del producto">
-                </figure>
-              </button>
+                <button id="btnPierna" class="btnSeleccion">
+                    <figure>
+                        <img src="images/pierna.jpg" alt="imagen del producto">
+                    </figure>
+                </button>
             </div>
+
             <div class="item5">
-              <button id="btnvirginia" class="btnSeleccion" onclick="jamonVirginia()">
-                <figure>
-                    <img src="images/jamon_virginia.jpg" alt="imagen del producto">
-                </figure>
-              </button>
+                <button id="btnJamonVirginia" class="btnSeleccion">
+                    <figure>
+                        <img src="images/jamon_virginia.jpg" alt="imagen del producto">
+                    </figure>
+                </button>
             </div>
+
             <div class="item6">
-              <button id="btnLechon" class="btnSeleccion" onclick="lechon()">
-                <figure>
-                    <img src="images/lechon.jpg" alt="imagen del producto">
-                </figure>
-              </button>
+                <button id="btnLechon" class="btnSeleccion">
+                    <figure>
+                        <img src="images/lechon.jpg" alt="imagen del producto">
+                    </figure>
+                </button>
             </div>
+
             <div class="item7">
-              <button id="btnPechuga" class="btnSeleccion" onclick="pechugaPavo()">
-                <figure>
-                    <img src="images/pechuga.jpg" alt="imagen del producto">
-                </figure>
-              </button>
+                <button id="btnPechugaPavo" class="btnSeleccion">
+                    <figure>
+                        <img src="images/pechuga.jpg" alt="imagen del producto">
+                    </figure>
+                </button>
             </div>
+
           </div>
     </form>
 
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
         <script type="text/javascript">
-            function pavo(){
+            
+             var fields =[
+                    $('#txtPrecio'),
+                    $('#txtCliente'),
+                    $('#txtTelefono'),
+                    $('#txtEntrega'),
+                    $('#txtOBS'),
+                    $('#txtCuenta'),
+                    $('#txtTotal')
+                ];
+
+            $(document).ready(function(){
+                //if($('#NombreProductoT').text() !== "Nombre Producto"){
+                    $('#Grande').click(function(){
+                        if($('#NombreProductoT').text() !== "Nombre Producto")
+                            $('#NombreProductoT').append(" Grande");
+
+                    });
+                    $('#Familiar').click(function(){
+                        $('#NombreProductoT').text("Familiar");
+                    });
+                //}
+
+                /*$id = $_POST['hdnId'];
+$tamano = $_POST['hdnTamano'];
+$nombreProducto = $_POST['hdnNombreProducto'];
+$nombreCliente = $_POST['hdnNombreCliente'];
+$telefono = $_POST['hdnTel'];
+$orderTime = $_POST['hdnOrderTime'];
+$deliverTime = $_POST['hdnDeliverTime'];
+$onAccount = $_POST['hdnAcuenta'];
+$inDebt = $_POST['hdnTotal'];
+$payment_status = '';
+$deliver_status = 'Pendiente';*/
+
+            $('#Continuar').click(function(){
+                    
+                    var param = {
+                        "hdnId": $('#NombreProductoT').text()
+                    };
+                    $.ajax({
+                        url: "Pruebas.php",
+                        type: "post",   
+                        data: param,
+                        success: function(data){
+                            console.log(data);
+                        },
+                        error: function(xhr, desc, err){
+                            console.log("error");
+                        }
+                    });
+                });
+
+
+                var producto = {
+                    "producto": $('#NombreProductoT').text(),
+                    "tamanio": $(),
+                    "precio": $('#txtPrecio').text(), 
+                }
+            });
+
+            $('#btnPavo').click(function(){
+                $('#NombreProductoT').text("Pavo");
+                fields[0].val("2000");
+                $('#hdnNombre').val("Pavo");
+                $('#hdnID').val(1);
+                //console.log($('#hdnID').val());
+                Total();
+            });
+
+            $('#btnLomo').click(function(){
+                $('#NombreProductoT').text("Lomo");
+                $('#txtPrecio').value ="2000";
+                $('#hdnNombre').value ="Lomo";
+                $('#hdnID').value = 2;
+                Total();
+            });
+
+            $('#btnPierna').click(function(){
                 
-                //var test = document.getElementById("txtPrecio");
-                document.getElementById("NombreProductoT").innerHTML = "Pavo";
-                document.getElementById("txtTamano").value = "Grande";
-                /*document.getElementById("txtPeso").value="7";*/
-                document.getElementById("txtPrecio").value ="2000";
-               // alert(test);
-                 document.getElementById("hdnNombre").value ="Pavo";
-                 document.getElementById("hdnID").value = 1;
-                
-
-
+                $('#NombreProductoT').text("Pierna");
+                $('#txtPrecio').value = "2000";
+                $('#hdnNombre').value = "Pierna";
+                ("hdnID").value = 3;
                 Total();
+            });
 
-
-            }
-
-            function Mostrar(){
-                console.log("Entro a la funcion");
-                document.getElementById("Familiar").style.visibility = "hidden";
-                document.getElementById("Grande").style.visibility = "hidden";
-
-            }
-             function lomo(){
-                // document.getElementById("NombreProductoT").innerHTML = "Hello World";
-                document.getElementById("NombreProductoT").innerHTML = "Lomo";
-                document.getElementById("txtTamano").value = "Grande";
-                /*document.getElementById("txtPeso").value="7";*/
-                document.getElementById("txtPrecio").value ="2000";
-                 document.getElementById("hdnNombre").value ="Lomo";
-                 document.getElementById("hdnID").value = 2;
-                Total();
-
-
-            }
-             function pierna(){
-                // document.getElementById("NombreProductoT").innerHTML = "Hello World";
-                document.getElementById("NombreProductoT").innerHTML = "Pierna";
-                document.getElementById("txtTamano").value = "Grande";
-                /*document.getElementById("txtPeso").value="7";*/
-                document.getElementById("txtPrecio").value ="2000";
-                 document.getElementById("hdnNombre").value ="Pierna";
-                document.getElementById("hdnID").value = 3;
-
-                Total();
-
-
-            }
-             function jamonVirginia(){
-                // document.getElementById("NombreProductoT").innerHTML = "Hello World";
-                document.getElementById("NombreProductoT").innerHTML = "Jamon Virginia";
-                document.getElementById("txtTamano").value = "Grande";
-                /*document.getElementById("txtPeso").value="7";*/
-                document.getElementById("txtPrecio").value ="2000";
+            $('#btnJamonVirginia').click(function(){
+                $('#NombreProductoT').text("Jamon Virginia");
+                $('#txtPrecio').value ="2000";
                  document.getElementById("hdnNombre").value ="Jamon Virginia";
                  document.getElementById("hdnID").value = 4;
-
                 Total();
+            });
 
-
-            }
-             function lechon(){
-                // document.getElementById("NombreProductoT").innerHTML = "Hello World";
+            $('#btnLechon').click(function(){
                 document.getElementById("NombreProductoT").innerHTML = "Lechon";
-                document.getElementById("txtTamano").value = "Grande";
-                /*document.getElementById("txtPeso").value="7";*/
                 document.getElementById("txtPrecio").value ="2000";
                  document.getElementById("hdnNombre").value ="Lechon";
                  document.getElementById("hdnID").value = 5;
                 Total();
+            });
 
-
-            }
-             function pechugaPavo(){
-                // document.getElementById("NombreProductoT").innerHTML = "Hello World";
+            $('#btnPechugaPavo').click(function(){
                 document.getElementById("NombreProductoT").innerHTML = "Pechuga Pavo";
-                document.getElementById("txtTamano").value = "Grande";
-                /*document.getElementById("txtPeso").value="7";*/
-                document.getElementById("txtPrecio").value ="2000";
+                                document.getElementById("txtPrecio").value ="2000";
                  document.getElementById("hdnNombre").value ="Pechuga Pavo";
                  document.getElementById("hdnID").value = 6;
-
                 Total();
+            });
 
-
-            }
-
-              function Limpiar(){
-                // document.getElementById("NombreProductoT").innerHTML = "Hello World";
-                document.getElementById("NombreProductoT").innerHTML = "Nombre del Producto";
-                document.getElementById("txtCantidad").value = " ";
-                document.getElementById("txtTamano").value=" ";
-                document.getElementById("txtkilo").value =" ";
-                document.getElementById("txtPrecio").value =" ";
-
-
+            function Limpiar(){
+                $.each(fields, function(i, pos){
+                    pos.val('');
+                });
+                $("#NombreProductoT").text("Nombre del Producto");
             }
 
            function Total(){
-
-            console.log("Entra en la funcion Total");
-
-             var Total = 0;
-
-             var Precio = parseInt(document.getElementById("txtPrecio").value);
-
-                  
-
-         
-
-        
-                 var ACuenta = parseInt(document.getElementById("txtCuenta").value);
-
-
+                var Total = 0;
+                var Precio = parseInt(document.getElementById("txtPrecio").value);
+                var ACuenta = parseInt(document.getElementById("txtCuenta").value);
                 Total = Precio - ACuenta;
-
-             document.getElementById("txtTotal").value = Total;
-
-                     
-
-          
+                $('#txtTotal').val(Total);
            }
 
                     function Confirmar(){
                         var date = new Date();
 
                         var Id = document.getElementById("hdnID").value;
-                        var Tamano = document.getElementById("txtTamano").value;
+                        
                         // var Peso = document.getElementById("txtPeso").value;
                         var NombreProducto = document.getElementById("hdnNombre").value;
                         var Telefono = document.getElementById("txtTelefono").value;
@@ -625,11 +634,5 @@ font-family: 'Cutive', serif;
                     }    
 
         </script>
-        
-                
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     </body>
 </html>
