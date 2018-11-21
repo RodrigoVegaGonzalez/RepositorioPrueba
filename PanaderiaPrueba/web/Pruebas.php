@@ -1,7 +1,12 @@
 <?php
-//echo('Hola Mundo');
-echo $_POST["nombre"];
 
+header('Content-Type: application/json');
+
+$user = "root";
+$
+
+
+$_POST["nombre"];
 
 
 ?>

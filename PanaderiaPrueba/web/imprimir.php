@@ -18,14 +18,6 @@ use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
 	imprimir usando puro texto de la forma
 	que tú quieras
 */
-class Producto{
-
-	public function __construct($nombre, $precio, $cantidad){
-		$this->nombre = $nombre;
-		$this->precio = $precio;
-		$this->cantidad = $cantidad;
-	}
-}
 
 /*
 	Vamos a simular algunos productos. Estos
@@ -34,22 +26,6 @@ class Producto{
 	aquí mismo
 */
 
-$nombre = $_POST["nombre"];
-$telefono = $_POST["tel"];
-
-$productos = array(
-
-	
-		new Producto("Nombre". $nombre, 10, 1),
-		new Producto("Numero telefonico".$telefono, 22, 2),
-		/*
-			El nombre del siguiente producto es largo
-			para comprobar que la librería
-			bajará el texto por nosotros en caso de
-			que sea muy largo
-		*/
-		new Producto("Galletas saladas con un sabor muy salado y un precio excelente", 10, 1.5),
-	);
 
 /*
 	Aquí, en lugar de "POS-58" (que es el nombre de mi impresora)
@@ -57,130 +33,211 @@ $productos = array(
 	desde el panel de control
 */
 
+
+
+
+$user = "root";
+$pass = "n0m3l0";  // en mi caso tengo contraseña pero en casa caso introducidla aquí.
+$servidor = "localhost";
+$basededatos = "tahona";
+
+$PDO = new PDO("mysql:dbname=tahona;host=127.0.0.1","root","n0m3l0");
+
+$id = $_POST['hdnId'];
+$tamano = $_POST['hdnTamano'];
+$nombreProducto = $_POST['hdnNombreProducto'];
+$nombreCliente = $_POST['hdnNombreCliente'];
+$telefono = $_POST['hdnTel'];
+$orderTime = $_POST['hdnOrderTime'];
+$deliverTime = $_POST['hdnDeliverTime'];
+$onAccount = $_POST['hdnAcuenta'];
+$inDebt = $_POST['hdnTotal'];
+$payment_status = '';
+$deliver_status = 'Pendiente';
+
+echo "ID: $id <br>";
+echo "Tamaño: $tamano <br>";
+echo "Order Time: $orderTime <br>";
+echo "Deliver Time: $deliverTime <br>";
+echo "Nombre Cliente: $nombreCliente <br>";
+echo "Nombre Producto: $nombreProducto <br>";
+echo "A cuenta: $onAccount <br>";
+echo "En deuda: $inDebt <br>";
+
+
+//Condicional para Payment_status. Deliver_Status por default es Pendiente
+if($inDebt == 0) {
+	$payment_status = 'Cobrado';
+} else {
+	if($onAccount < $inDebt)
+		$payment_status = 'Adeudo';
+}
+
+
+//* Inserción en la base de datos*/
+$stmt = $PDO->prepare("INSERT INTO purchases(
+											client_name,
+											product_id,
+											on_account,
+											in_debt,
+											order_time,
+											deliver_time,
+											payment_status,
+											deliver_status)
+						VALUES(
+								:clientName,
+								:productId,
+								:onAccount,
+								:inDebt,
+								:orderTime,
+								:deliverTime,
+								:paymentStatus,
+								:deliverStatus)");
+
+$rs = $stmt->execute(array(
+					"clientName"=> $nombreCliente, 
+					"productId"=> $id,
+					"onAccount"=> $onAccount,
+					"inDebt"=> $inDebt,
+					"orderTime"=> $orderTime,
+					"deliverTime" => $deliverTime,
+					"paymentStatus" => $payment_status,
+					"deliverStatus" => $deliver_status));
+
+
+var_dump($rs);
+
 $nombre_impresora = "BIXOLON SRP-350plusIII"; 
-
-
 $connector = new WindowsPrintConnector($nombre_impresora);
 $printer = new Printer($connector);
 
 
-/*
-	Vamos a imprimir un logotipo
-	opcional. Recuerda que esto
-	no funcionará en todas las
-	impresoras
+$conexion = mysqli_connect( $servidor, $user, $pass);
 
-	Pequeña nota: Es recomendable que la imagen no sea
-	transparente (aunque sea png hay que quitar el canal alfa)
-	y que tenga una resolución baja. En mi caso
-	la imagen que uso es de 250 x 250
-*/
+$db = mysqli_select_db( $conexion, $basededatos );
+
+$sentencia = "SELECT pu.purchases_id, pu.client_name , p.product_id ,p.price,p.name,pu.on_account,pu.in_debt,pu.order_time,pu.deliver_time FROM purchases AS pu
+JOIN products AS p ON p.product_id = pu.product_id Order BY pu.purchases_id DESC limit 1;";
+
+$resultado = mysqli_query( $conexion, $sentencia ) or die ( "Algo ha ido mal en la consulta a la base de datos"); 
+
+
+while ($ticket = mysqli_fetch_array( $resultado))
+{
+
 
 # Vamos a alinear al centro lo próximo que imprimamos
 $printer->setJustification(Printer::JUSTIFY_CENTER);
-
+$printer->text("FOLIO" . "\n");
+$printer->text($ticket['purchases_id'] . "\n");
+$printer->text("\n");
 /*
 	Intentaremos cargar e imprimir
 	el logo
 */
 try{
-	$logo = EscposImage::load("drones.png", false);
+	$logo = EscposImage::load("images/drones.png", false);
     $printer->bitImage($logo);
 }catch(Exception $e){/*No hacemos nada si hay error*/}
 
+$printer->text("\n");
+$printer->text("PEDIDO" . "\n");
+$printer->text("\n");
+$printer->text("VENTA" . "\n");
+$printer->text("\n");
+$printer->text("NOMBRE DE LA SUCURSAL" . "\n");
+
+$printer->setJustification(Printer::JUSTIFY_LEFT);	
+
+$printer->text("\n");
+$printer->text("HORA y FECHA DE LA COMPRA:" . "\n");
+$printer->text($ticket['order_time'] . "\n");
+
+$printer->text("\n");
+$printer->text("HORA y FECHA DE LA ENTREGA:" . "\n");
+$printer->text($ticket['deliver_time']. "\n");
 /*
 	Ahora vamos a imprimir un encabezado
 */
 
-	$user = "root";
-$pass = "n0m3l0";  // en mi caso tengo contraseña pero en casa caso introducidla aquí.
-$servidor = "localhost";
-$basededatos = "tahona";
 
 
-$conexion = mysqli_connect( $servidor, $user, 
-	$pass);
+/*$conexion = mysqli_connect( $servidor, $user, 
+	$pass);*/
 
-$db = mysqli_select_db( $conexion, $basededatos );
+
+
+//$db = mysqli_select_db( $conexion, $basededatos );
+
 
 
 $printer->setJustification(Printer::JUSTIFY_CENTER);	
-$printer->text("Usuarios" . "\n");
+$printer->text("\n");
+$printer->text("\n");
+$printer->text("Producto" . "\n");
 $printer->text("\n");
 
+$printer->setJustification(Printer::JUSTIFY_LEFT);	
+$printer->text($ticket['name'] . "\n");
+
+$printer->setJustification(Printer::JUSTIFY_RIGHT);
+$printer->text("$".$ticket['price']. "\n");
 
 
-$consulta_usuarios = "SELECT * FROM users WHERE name LIKE '%ictor%'";
+
+
+
+$printer->setJustification(Printer::JUSTIFY_CENTER);
+$printer->text("--------------------------------\n");
+$printer->setJustification(Printer::JUSTIFY_RIGHT);	
+$printer->text("Total:". "  "); 
+
+$printer->setJustification(Printer::JUSTIFY_RIGHT);
+$printer->text("$". $ticket['price']);
+
+$printer->text("\n");
+$printer->setJustification(Printer::JUSTIFY_RIGHT);	
+$printer->text("A cuenta:". "  "); 
+
+$printer->setJustification(Printer::JUSTIFY_RIGHT);
+$printer->text("$". $ticket['on_account']);
+
+$printer->text("\n");
+$printer->setJustification(Printer::JUSTIFY_RIGHT);	
+$printer->text("Saldo:". "  "); 
+
+
+$printer->setJustification(Printer::JUSTIFY_RIGHT);
+$printer->text("$". $ticket['in_debt']);
+
+$printer->text("\n");
+
+}
+
+
+$consulta_usuarios = "SELECT * FROM users WHERE name LIKE '%ic%'";
 
 
 
 $resultado = mysqli_query( $conexion, $consulta_usuarios ) or die ( "Algo ha ido mal en la consulta a la base de datos"); 
 
-
-while ($nombre = mysqli_fetch_array( $resultado ))
-{
-
-$printer->setJustification(Printer::JUSTIFY_LEFT);	
-$printer->text($nombre['user_id']."  ".$nombre['name']. "\n"); 
-
-$printer->setJustification(Printer::JUSTIFY_RIGHT);
-$printer->text($nombre['phone']. "\n");
-
-}
-
-/*
-$printer->setJustification(Printer::JUSTIFY_CENTER);	
-$printer->text("Productos" . "\n");
-
-$consulta_productos = "SELECT * FROM producto";
-$resultado2 = mysqli_query( $conexion, $consulta_productos) or die ( "Algo ha ido mal en la consulta a la base de datos"); 
-
-while ($producto = mysqli_fetch_array( $resultado2 ))
-{
-
-$printer->setJustification(Printer::JUSTIFY_LEFT);	
-$printer->text($producto['id_producto']."  ".$producto['nombre_producto']. "\n"); 
-
-$printer->setJustification(Printer::JUSTIFY_RIGHT);
-$printer->text($producto['precio']. "\n");
-$printer->text($producto['tamaño']. "\n");
-$printer->text($producto['peso']. "\n");
-$printer->text($producto['tipo']. "\n");
-
-}
-
-$printer->setJustification(Printer::JUSTIFY_CENTER);	
-$printer->text("Compras Realizadas" . "\n");
-
-$consulta_compras =
-"SELECT c.id_compra, u.nombre_usuario, p.nombre_producto, p.precio
-FROM compra AS c
-JOIN usuario AS u
-ON u.id_usuario = c.id_usuario
-JOIN producto AS p
-ON p.id_producto = c.id_producto;";
-
-$resultado3 = mysqli_query( $conexion, $consulta_compras) or die ( "Algo ha ido mal en la consulta a la base de datos"); 
-
-while ($compra = mysqli_fetch_array( $resultado3 ))
-{
-
-$printer->setJustification(Printer::JUSTIFY_LEFT);	
-$printer->text($compra['id_compra']."  "
-	.$compra['nombre_usuario']. "\n"); 
-
-$printer->setJustification(Printer::JUSTIFY_RIGHT);
-$printer->text($compra['nombre_producto']. "\n");
-$printer->text("$".$compra['precio']. "\n");
-
-}*/
-
-$printer->text("Prueba Impresion" . "\n");
-
-#La fecha también
-$printer->text(date("Y-m-d H:i:s") . "\n");
+$usuario = mysqli_fetch_array( $resultado );
 
 
+$printer->setJustification(Printer::JUSTIFY_CENTER);
+$printer->text("\n");
+$printer->text("*NOTA: En piernas y en lomos," . "\n");
+$printer->text("la nota no se totaliza , el precio" . "\n");
+$printer->text("marcado, indica el precio por kilo." . "\n");
+$printer->text("\n");
+$printer->text("Te atendio: " . "\n");
+$printer->text($usuario['name']. "\n");
+
+
+$printer->text("\n");
+$printer->text("DIRECCION DE LA SUCURSAL" . "\n");
+$printer->text("TELEFONO DE LA SUCURSAL" . "\n");
+$printer->text("\n");
 
 /*
 	Ahora vamos a imprimir los
@@ -188,33 +245,18 @@ $printer->text(date("Y-m-d H:i:s") . "\n");
 */
 
 # Para mostrar el total
-$total = 0;
-foreach ($productos as $producto) {
-	$total += $producto->cantidad * $producto->precio;
 
-	/*Alinear a la izquierda para la cantidad y el nombre*/
-	$printer->setJustification(Printer::JUSTIFY_LEFT);
-    $printer->text($producto->cantidad . "x" . $producto->nombre . "\n");
-
-    /*Y a la derecha para el importe*/
-    $printer->setJustification(Printer::JUSTIFY_RIGHT);
-    $printer->text(' $' . $producto->precio . "\n");
-
-}
 
 /*
 	Terminamos de imprimir
 	los productos, ahora va el total
 */
-$printer->text("--------\n");
-$printer->text("TOTAL: $". $total ."\n");
+
 
 
 /*
 	Podemos poner también un pie de página
 */
-$printer->text("Prueba fializada");
-
 
 
 /*Alimentamos el papel 3 veces*/

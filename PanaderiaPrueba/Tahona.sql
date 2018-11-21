@@ -1,5 +1,7 @@
 CREATE DATABASE tahona;
 
+USE tahona;
+
 CREATE TABLE users(
 user_id INTEGER UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
 password VARCHAR(50) NOT NULL,
@@ -47,7 +49,7 @@ CREATE TABLE products (
 );
 
 INSERT INTO products(name,price,size,weigth,image_url,category)
-VALUES ('Pavo',750.00,'GRANDE',0,'','');
+VALUES ('Pavo',2000.00,'GRANDE',0,'','');
 
 CREATE TABLE places (
 place_id INTEGER UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -108,3 +110,21 @@ JOIN products AS p
 ON pu.product_id = p.product_id
 JOIN users AS u 
 ON pu.user_id = u.user_id;
+
+
+
+CREATE TABLE purchases(
+purchases_id INTEGER UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+client_name VARCHAR(100) NOT NULL,
+product_id INTEGER UNSIGNED,
+on_account  DOUBLE(6,2) NOT NULL,
+in_debt DOUBLE(6,2) NOT NULL,
+`order_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'yyyy-mm-dd hh:mm:ss',
+`deliver_time` DATE NOT NULL,
+payment_status ENUM('Adeudo','Cobrado') NOT NULL DEFAULT 'adeudo',
+deliver_status ENUM('Pendiente','Entregado') NOT NULL DEFAULT 'Pendiente'
+);
+
+
+
+
